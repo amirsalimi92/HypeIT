@@ -1,0 +1,106 @@
+{% extends "account/index_register.html" %}
+{% load widget_tweaks %}
+
+{% block titel %}Register a new device{% endblock %}
+
+{% block body %}
+
+
+<div class="card-body">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="name">Choose a nickname</div>
+            <div class="value">
+                <div class="input-group">
+                    {{ form.nickName|add_class:"input--style-5" }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row m-b-55">
+            <div class="name">Type of device</div>
+            <div class="value">
+                <div class="row row-refine">
+                    <div class="col-3">
+                        <div class="input-group-desc">
+                            {{ form.type|add_class:"input--style-5" }}
+                            <label class="label--desc">Type</label>
+                        </div>
+                    </div>
+                    <div class="col-9" style="left: 25px;">
+                        <div class="input-group-desc">
+                            {{ form.brand|add_class:"input--style-5" }}
+                            <label class="label--desc">Brand</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="name">OS</div>
+            <div class="value">
+                <div class="input-group">
+                    {{ form.os|add_class:"input--style-5" }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row m-b-55">
+            <div class="name">Specifications</div>
+            <div class="value">
+                <div class="row row-refine">
+                    <div class="col-3">
+                        <div class="input-group-desc">
+                            {{ form.ram|add_class:"input--style-5" }}
+                            <label class="label--desc">RAM</label>
+                        </div>
+                    </div>
+                    <div class="col-9" style="left: 25px;">
+                        <div class="input-group-desc">
+                            {{ form.vga|add_class:"input--style-5" }}
+                            <label class="label--desc">VGA</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="name">CPU</div>
+            <div class="value">
+                <div class="input-group">
+                    {{ form.cpu|add_class:"input--style-5" }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="name">Storage</div>
+            <div class="value">
+                <div class="input-group">
+                    {{ form.storage|add_class:"input--style-5" }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="name">Display</div>
+            <div class="value">
+                <div class="input-group">
+                    {{ form.display|add_class:"input--style-5" }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="name">Comment</div>
+            <div class="value">
+                <div class="input-group">
+                    {{ form.other|add_class:"input--style-5" }}
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn--radius-2 btn--red" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

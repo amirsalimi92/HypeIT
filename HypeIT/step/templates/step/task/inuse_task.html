@@ -1,0 +1,80 @@
+{% extends 'account/index.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Our warehouse{% endblock %}
+
+{% block body %}
+
+<main id="main" class="site-main">
+    <section class="site-section section-ui-elements">
+        <form class="form-group" method="POST" action="{% url 'search-prepared' %}">
+            {% csrf_token %}
+            <input type="search" class="aform-control" placeholder="Search" name="searched">
+            <button class="btn btn-green" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form> <br><br>
+
+        {% if searched %}
+        <h3 style="margin-left: 5em;" class="post-title">You searched for {{ searched }} </h3>
+        {% endif %}
+
+        <p style="margin-left: 150px; color: red; font-weight: bold;">Nothing!</p>
+        <div class="container">
+            <br class="typography">
+            <section class="ainfo-list">
+                <div class="aaabox-container">
+
+
+
+                    {% if nothing %}
+                    {% for no in nothing %}
+
+                    <div class="abox">
+                        <div class="aname" style="font-size: 12px;">{{ no.device.domainName }}</div>
+                        <div class="atext" style="font-size: 9px; color: red;">{{ no.staff }}</div>
+                        <div>
+                            <a class="aedit-button" href="/step/inuse_edit/{{ no.id }}">Edit</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    {% else %}
+                    <p style="text-align: center; font-weight: bold; color: green;">Congratulations!<br>There is no
+                        task.</p>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+        <br>
+        <p style="margin-left: 150px; color: orange; font-weight: bold;">Not complete!</p>
+        <div class="container">
+            <br class="typography">
+            <section class="ainfo-list">
+                <div class="aaabox-container">
+
+
+
+                    {% if not_complete %}
+                    {% for np in not_complete %}
+
+                    <div class="abox">
+                        <div class="aname" style="font-size: 12px;">{{ np.device.domainName }}</div>
+                        <div class="atext" style="font-size: 9px; color: orange;">{{ np.staff }}</div>
+                        <div>
+                            <a class="aedit-button" href="/step/inuse_edit/{{ np.id }}">Edit</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    {% else %}
+                    <p style="text-align: center; font-weight: bold; color: green;">Congratulations!<br>There is no
+                        task.</p>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}

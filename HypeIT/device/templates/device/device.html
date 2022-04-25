@@ -1,0 +1,48 @@
+{% extends 'account/index.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Device list{% endblock %}
+
+{% block body %}
+
+<main id="main" class="site-main">
+    <section class="site-section section-ui-elements">
+        <form class="form-group" method="POST" action="{% url 'search-pc' %}">
+            {% csrf_token %}
+            <input type="search" class="aform-control" placeholder="Search" name="searched">
+            <button class="btn btn-green" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form> <br><br>
+
+        {% if searched %}
+        <h3 style="margin-left: 5em;" class="post-title">You searched for {{ searched }} </h3>
+        {% endif %}
+        <div class="container">
+            <br class="typography">
+            <section class="ainfo-list">
+                <div class="aabox-container">
+
+
+
+                    {% if pc %}
+                    {% for pcs in pc %}
+
+                    <div class="abox">
+                        <div class="aname">{{ pcs.nickName }}</div>
+                        <div class="atext">{{ pcs.storage }}</div>
+
+                        <div>
+                            <a class="aedit-button" href="/device/edit/{{ pcs.id }}">Edit now!</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}

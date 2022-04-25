@@ -1,0 +1,55 @@
+{% extends 'account/index.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Our warehouse{% endblock %}
+
+{% block body %}
+
+<main id="main" class="site-main">
+    <section class="site-section section-ui-elements">
+        <form class="form-group" method="POST" action="{% url 'search-inuse' %}">
+            {% csrf_token %}
+            <input type="search" class="aform-control" placeholder="Search" name="searched">
+            <button class="btn btn-green" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form> <br><br>
+
+        {% if searched %}
+        <h3 style="margin-left: 5em;" class="post-title">You searched for {{ searched }} </h3>
+        {% endif %}
+        <div class="container">
+            <br class="typography">
+            <section class="ainfo-list">
+                <div class="aaabox-container">
+
+
+
+                    {% if inuse %}
+                    {% for is in inuse %}
+
+                    <div class="abox">
+                        <div class="aname" style="font-size: 12px;">{{ is.device.domainName }}</div>
+                        {% if is.status == 1 %}
+                        <div class="atext" style="font-size: 9px; color: red;">{{ is.device.device }}</div>
+                        {% elif is.status == 2 %}
+                        <div class="atext" style="font-size: 9px; color: orange;">{{ is.device }}</div>
+                        {% else %}
+                        <div class="atext" style="font-size: 9px; color: green;">{{ is.device }}</div>
+                        {% endif %}
+                        <div class="atext" style="font-size: 9px;">{{ is.staff }}</div>
+
+                        <div>
+                            <a class="aedit-button" href="/step/inuse_edit/{{ is.id }}">Edit</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}

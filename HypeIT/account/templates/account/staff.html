@@ -1,0 +1,56 @@
+{% extends 'account/index.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Staff list{% endblock %}
+
+{% block body %}
+
+<main id="main" class="site-main">
+    <section class="site-section section-ui-elements">
+        <form class="form-group" method="POST" action="{% url 'search-staff' %}">
+            {% csrf_token %}
+            <input type="search" class="aform-control" placeholder="Search" name="searched">
+            <button class="btn btn-green" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form> <br><br>
+
+        {% if searched %}
+        <h3 style="margin-left: 5em;" class="post-title">You searched for {{ searched }} </h3>
+        {% endif %}
+        <div class="container">
+            <br class="typography">
+            <section class="ainfo-list">
+                <div class="abox-container">
+
+
+
+                    {% if staff %}
+                    {% for staffs in staff %}
+
+                    <div class="abox">
+                        <div class="aname">{{ staffs.fName }} {{ staffs.lName }}</div>
+                        <div class="atext">{{ staffs.email }}</div>
+                        <div class="atext">{{ staffs.department }} in {{ staffs.city }}</div>
+                        <div>
+                            <a class="aedit-button" href="/staff/edit/{{ staffs.id }}/">Edit now!</a>
+                            <a onclick=accept(); class="adelete-button" href="/staff/delete/{{ staffs.id }}/">Delete
+                                now!</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </section>
+
+</main>
+
+
+<script>
+    function accept() {
+        <button type='POST'>Yes</button>
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'account/index.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Staff list{% endblock %}
+
+{% block body %}
+<div id="hero" class="hero overlay" style=" min-width: 768px;">
+    <div class="aabox-container">
+
+        <div class="row mt-50" style="margin-top: 50%; margin-left: 5%; ">
+            <div class="col-md-8 col-md-offset-2">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="email">Username:</label>
+                                <input type="text" class="form-control" style="width: 85%;" name="username"
+                                    id="username">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mt-20">
+                            <div class="form-group">
+                                <label for="name">Password:</label>
+                                <input type="password" class="form-control" style="width: 85%;" name="password"
+                                    id="password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-20">
+                        <button class="btn btn-green" style="margin-right: 15%;" type="submit">Sign in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="hero-content asmall" style="margin-top: 40%; margin-right: 15%;">
+            <div class="hero-text">
+                <h1>Welcome!</h1>
+                <p>Please login to see the tasks</p>
+            </div><!-- /.hero-text -->
+        </div><!-- /.hero-content -->
+    </div>
+</div><!-- /.hero -->
+
+{% endblock %}

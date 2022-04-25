@@ -1,0 +1,69 @@
+{% extends 'account/index.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Our warehouse{% endblock %}
+
+{% block body %}
+
+<main id="main" class="site-main">
+    <section class="site-section section-ui-elements">
+        <div class="atwi">
+            <div><a href="/step/retired_idle/" class="btn btn-fill mb-10"
+                    style="min-width: 100px; margin-left: 5em; background-color: orange;">Idle</a>
+                <a href="/step/retired_recycle/" class="btn btn-fill mb-10"
+                    style="min-width: 100px; margin-left: 1em; background-color: red;">Recycling</a>
+            </div>
+            <div style="margin-right: 5em;">
+                <form class="form-group" method="POST" action="{% url 'search-retired' %}">
+                    {% csrf_token %}
+
+                    <input type="search" class="aform-control" placeholder="Search" name="searched">
+                    <button class="btn btn-green" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+            </div>
+        </div><br><br>
+
+
+        {% if searched %}
+        <h3 style="margin-left: 5em;" class="post-title">You searched for {{ searched }} </h3>
+        {% endif %}
+        <div class="container">
+            <br class="typography">
+            <section class="ainfo-list">
+                <div class="aaabox-container">
+
+
+
+                    {% if retired %}
+                    {% for rt in retired %}
+
+                    <div class="abox">
+                        <div class="aname" style="font-size: 12px;">{{ rt.device.device.domainName }}</div>
+                        {% if rt.status == 1 %}
+                        <div class="atext" style="font-size: 9px;">{{ rt.device.device }}</div>
+                        <p style="color: orange; font-weight: bold;">Idle</p>
+                        {% elif rt.status == 2 %}
+                        <div class="atext" style="font-size: 9px;">{{ rt.device }}</div>
+                        <p style="color: red; font-weight: bold;">Recycling</p>
+                        {% else %}
+                        <div class="atext" style="font-size: 9px;">{{ rt.device }}</div>
+                        <p style="font-weight: bold;">Other</p>
+                        {% endif %}
+                        <div class="atext" style="font-size: 9px;">{{ rt.date }}</div>
+
+                        <div>
+                            <a class="aedit-button" href="/step/retired_edit/{{ rt.id }}">Edit</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}

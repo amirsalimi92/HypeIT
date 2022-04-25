@@ -1,0 +1,52 @@
+{% extends 'account/index.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Our warehouse{% endblock %}
+
+{% block body %}
+
+<main id="main" class="site-main">
+    <section class="site-section section-ui-elements">
+        <form class="form-group" method="POST" action="{% url 'search-prepared' %}">
+            {% csrf_token %}
+            <input type="search" class="aform-control" placeholder="Search" name="searched">
+            <button class="btn btn-green" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form> <br><br>
+
+        {% if searched %}
+        <h3 style="margin-left: 5em;" class="post-title">You searched for {{ searched }} </h3>
+        {% endif %}
+        <p style="margin-left: 150px; color: purple; font-weight: bold;">Let's go!</p>
+        <div class="container">
+            <br class="typography">
+            <section class="ainfo-list">
+                <div class="aaabox-container">
+
+
+
+                    {% if ready %}
+                    {% for rg in ready %}
+
+                    <div class="abox">
+                        <div class="aname" style="font-size: 12px;">{{ rg.device }}</div>
+                        <div class="atext" style="font-size: 9px; color: purple;">{{ rg.orderDate }}</div>
+                        <div class="atext" style="font-size: 9px; color: purple;">{{ rg.serialNumber }}</div>
+                        <div>
+                            <a class="aedit-button" href="/step/edit/{{ rg.id }}">Edit</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+                    {% else %}
+                    <p style="text-align: center; font-weight: bold; color: green;">Congratulations!<br>There is no
+                        task.</p>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </section>
+
+</main>
+
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "account/index_register.html" %}
+{% load widget_tweaks %}
+
+{% block titel %}Register a new staff{% endblock %}
+
+{% block body %}
+
+
+<div class="card-body">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-row m-b-55">
+            <div class="name">Name</div>
+            <div class="value">
+                <div class="row row-space">
+                    <div class="col-2">
+                        <div class="input-group-desc">
+                            {{ form.fName|add_class:"input--style-5" }}
+                            <label class="label--desc">first name</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="input-group-desc">
+                            {{ form.lName|add_class:"input--style-5" }}
+                            <label class="label--desc">last name</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="name">Email</div>
+            <div class="value">
+                <div class="input-group">
+                    {{ form.email|add_class:"input--style-5" }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row m-b-55">
+            <div class="name">Work</div>
+            <div class="value">
+                <div class="row row-refine">
+                    <div class="col-3">
+                        <div class="input-group-desc">
+                            {{ form.city|add_class:"input--style-5" }}
+                            <label class="label--desc">City</label>
+                        </div>
+                    </div>
+                    <div class="col-9" style="left: 25px;">
+                        <div class="input-group-desc">
+                            {{ form.department|add_class:"input--style-5" }}
+                            <label class="label--desc">Department</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="name">Active</div>
+            <div class="value">
+                <div class="input-group">
+                    <div class="rs-select2 js-select-simple select--no-search" style="float: left;">
+                        {{ form.active|add_class:"radio-container m-r-55" }}
+                        <div class="select-dropdown"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row p-t-20">
+            <label class="label label--block">Any comment</label>
+            <div class="p-t-15" style="border-top-width: 2px;">
+                {{ form.comment|add_class:"input--style-5" }}
+            </div>
+        </div>
+        <div>
+            <button class="btn btn--radius-2 btn--red" type="submit">Register</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

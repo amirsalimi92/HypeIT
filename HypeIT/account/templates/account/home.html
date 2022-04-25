@@ -1,0 +1,27 @@
+{% extends 'account/index.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Home | IT{% endblock %}
+
+{% block body %}
+<div id="hero" class="hero overlay">
+    <div class="hero-content">
+        <div class="hero-text">
+            {% if user.is_authenticated %}
+            <h1>Remaining tasks</h1>
+            <p>Hi {{ request.user.username }}</p>
+            <p>You have <span style="font-weight: bold;"> {{ p }} </span> {% if p == 1 %} task {% else %} tasks
+                {% endif %} </p>
+            {% else %}
+            <h1>Welcome!</h1>
+            <p>Please login to see the tasks</p>
+            <a href="/login" class="btn btn-border">Let's go!</a>
+            {% endif %}
+
+        </div><!-- /.hero-text -->
+    </div><!-- /.hero-content -->
+</div><!-- /.hero -->
+
+
+
+{% endblock %}

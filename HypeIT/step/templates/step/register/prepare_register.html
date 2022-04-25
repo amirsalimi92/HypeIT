@@ -1,0 +1,60 @@
+{% extends "account/index_register.html" %}
+{% load widget_tweaks %}
+
+{% block titel %}Register a new staff{% endblock %}
+
+{% block body %}
+
+
+<div class="card-body">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="name">Pick up a device</div>
+            <div class="value">
+                <div class="input-group">
+                    {{ form.device|add_class:"input--style-5" }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="name">Editor</div>
+            <div class="value">
+                <div class="input-group">
+                    {{ form.editor|add_class:"input--style-5" }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row m-b-55">
+            <div class="name">Infos</div>
+            <div class="value">
+                <div class="row row-space">
+                    <div class="col-2">
+                        <div class="input-group-desc">
+                            {{ form.domainName|add_class:"input--style-5" }}
+                            <label class="label--desc">Name on domain</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="input-group-desc">
+                            {{ form.status|add_class:"input--style-5" }}
+                            <label class="label--desc">Status</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row p-t-20">
+            <label class="label label--block">Any comment</label>
+            <div class="p-t-15" style="border-top-width: 2px;">
+                {{ form.comment|add_class:"input--style-5" }}
+            </div>
+        </div>
+        <div>
+            <button class="btn btn--radius-2 btn--red" type="submit">Register</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
